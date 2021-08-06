@@ -19,12 +19,6 @@ func (mb *client) PLCHotStart() error {
 		if length := len(response.Data); length > 18 { // 18 is the minimum expected
 			if int(response.Data[19]) != pduStart {
 				err = fmt.Errorf(ErrorText(errCliCannotStartPLC))
-			} else {
-				if int(response.Data[20]) == pduAlreadyStarted {
-					err = fmt.Errorf(ErrorText(errCliAlreadyRun))
-				} else {
-					err = fmt.Errorf(ErrorText(errCliCannotStartPLC))
-				}
 			}
 		} else {
 			err = fmt.Errorf(ErrorText(errIsoInvalidPDU))
@@ -44,12 +38,6 @@ func (mb *client) PLCColdStart() error {
 		if length := len(response.Data); length > 18 { // 18 is the minimum expected
 			if int(response.Data[19]) != pduStart {
 				err = fmt.Errorf(ErrorText(errCliCannotStartPLC))
-			} else {
-				if int(response.Data[20]) == pduAlreadyStarted {
-					err = fmt.Errorf(ErrorText(errCliAlreadyRun))
-				} else {
-					err = fmt.Errorf(ErrorText(errCliCannotStartPLC))
-				}
 			}
 		} else {
 			err = fmt.Errorf(ErrorText(errIsoInvalidPDU))
@@ -68,12 +56,6 @@ func (mb *client) PLCStop() error {
 		if length := len(response.Data); length > 18 { // 18 is the minimum expected
 			if int(response.Data[19]) != pduStop {
 				err = fmt.Errorf(ErrorText(errCliCannotStopPLC))
-			} else {
-				if int(response.Data[20]) == pduAlreadyStarted {
-					err = fmt.Errorf(ErrorText(errCliAlreadyStop))
-				} else {
-					err = fmt.Errorf(ErrorText(errCliCannotStopPLC))
-				}
 			}
 		} else {
 			err = fmt.Errorf(ErrorText(errIsoInvalidPDU))
